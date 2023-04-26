@@ -23,4 +23,4 @@ Available clusters:
 + cesga
 + citius
 
-Edit $HOME/.remote_runner/config.json to change cluster configuration. Change username and remote tmp path. The project directory will be copied to this temporal directory. SLURM output log files follow the pattern: ~/job_%j.log
+Edit $HOME/.remote_runner/config.json to change cluster configuration. Change username and remote tmp path. The project directory will be copied to this temporary directory. SLURM output log files follow the pattern: ~/job_%j.log
