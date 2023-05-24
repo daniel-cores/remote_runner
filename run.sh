@@ -33,10 +33,14 @@ remote__run(){
             return
         fi
 
-        rsync -az --delete $PWD ${!user_var}@${!host_var}:${!tmp_dir} # copy project folder
+        remote_temp_dir=${!tmp_dir}/$(date +%s)
 
+        echo "Copying project to ${!host_var}..."
+        rsync -az --delete $PWD ${!user_var}@${!host_var}:${remote_temp_dir} # copy project folder
+
+        echo "Running job..."
         project_dir=`basename $PWD`
-        ssh ${!user_var}@${!host_var} "cd /${!tmp_dir}/$project_dir; export export PROJECT_DIR=/${!tmp_dir}/$project_dir; sbatch -o ~/job_%j.log $script $@" # run job
+        ssh ${!user_var}@${!host_var} "cd /${remote_temp_dir}/$project_dir; export PROJECT_DIR=/${remote_temp_dir}/$project_dir; sbatch -o ~/job_%j.log $script $@ | tee ${remote_temp_dir}/job.info" # run job
     fi
 }
 
