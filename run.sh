@@ -33,7 +33,8 @@ remote__run(){
             return
         fi
 
-        remote_temp_dir=${!tmp_dir}/$(date +%s)
+        remote_temp_dir=${!tmp_dir}/${!user_var}/$(date +%s)
+        ssh ${!user_var}@${!host_var} "mkdir -p ${remote_temp_dir}" # create temp dir
 
         echo "Copying project to ${!host_var}..."
         rsync -az --delete $PWD ${!user_var}@${!host_var}:${remote_temp_dir} # copy project folder
