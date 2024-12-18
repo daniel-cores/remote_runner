@@ -22,5 +22,7 @@ remote queue $CLUSTER
 Available clusters:
 + cesga
 + citius
++ ctgpgpu11
++ ctgpgpu13
 
 Edit $HOME/.remote_runner/config.json to change cluster configuration. Change username and remote tmp path. The project directory will be copied to this temporary directory. SLURM output log files follow the pattern: ~/job_%j.log
